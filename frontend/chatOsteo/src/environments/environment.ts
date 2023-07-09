@@ -1,9 +1,26 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import {KeycloakOptions} from 'keycloak-angular';
+
+const keycloakUrl = 'http://localhost/auth';
+
+const keycloakConfig: KeycloakOptions = {
+  config: {
+    realm: 'osteo-reaml',
+    url: 'http://localhost/auth',
+    clientId: 'osteo-app'
+  },
+  initOptions: {
+    onLoad: "check-sso",
+    checkLoginIframe: false
+  }
+};
 
 export const environment = {
-  production: false
+  production: false,
+  keycloakOptions: keycloakConfig,
+  keycloakUrl: keycloakUrl
 };
 
 /*
