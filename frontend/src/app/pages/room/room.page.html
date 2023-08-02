@@ -1,0 +1,52 @@
+<ion-header class="title-header">
+  <ion-toolbar color="primary">
+    <ion-title>Fire Chat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" id="popover">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-popover #popover trigger="popover" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding ion-text-center" (click)="logout()">
+          <ion-label color="danger">
+            LOGOUT
+          </ion-label>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content color="light">
+
+  <ion-list *ngIf="segment == 'chats' && (chatRooms$ | async) as rooms">
+
+    <ion-list-header class="ion-padding-bottom" color="light">
+      RECENT MESSAGES
+    </ion-list-header>
+
+    <ion-item
+    *ngFor="let item of rooms" 
+    (click)="getChat(item)"
+    [detail]="true">
+      <ion-avatar slot="start">
+        <img [src]="item?.photo" />
+      </ion-avatar>
+      <ion-label>
+        {{item?.horaire_consultation | date :'short'}}
+        <p>
+          <ion-text>
+            message
+          </ion-text>
+        </p>
+      </ion-label>
+      <ion-text slot="end" color="medium">10:00 AM</ion-text>
+    </ion-item>
+
+  </ion-list>
+
+
+
+</ion-content>

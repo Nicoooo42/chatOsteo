@@ -1,7 +1,6 @@
 package com.lamanna.chatOsteo.dto;
 
 
-import java.util.Collection;
 import java.util.List;
 
 import com.lamanna.chatOsteo.entities.Message;
@@ -13,7 +12,7 @@ public class RoomDto {
 
   private Long id;
 
-  private String name;
+  private String horaire_consultation;
 
   private String photo;     
   

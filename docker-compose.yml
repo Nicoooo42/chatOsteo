@@ -1,6 +1,16 @@
 version: "3.7"
 
 services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 80:80
+    environment: 
+      - BACKEND_BASE_PATH=http://localhost:8081
+    depends_on:
+      - keycloak
+      
 
   zookeeper:
     image: wurstmeister/zookeeper
@@ -15,18 +25,7 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    depends_on:
-      - kafka
-    ports:
-      - 8090:8080
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-
+      
   keycloak:
     image: jboss/keycloak:11.0.2
     container_name: keycloak

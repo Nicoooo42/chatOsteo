@@ -1,0 +1,39 @@
+ion-header {
+    position: absolute;
+}
+
+ion-toolbar {
+    --ion-background: transparent;
+    --opacity:0;
+}
+
+ion-content {
+    --ion-background:#E1EAF9 !important;
+}
+
+.wrapform {
+    margin-top: 25px;
+}
+
+
+ion-item{
+    ion-input{
+        color: #647B9D;
+    }
+}
+
+.sign-btn-wrap {
+    text-align: center;
+    padding-top: 30px;
+    .sign-btn{
+        --ion-primary-color: #215AB7;
+        color:#F4F6FA;
+    }
+}
+
+ion-card {
+    --ion-background-color: transparent;
+    box-shadow: none !important;
+}
+
+

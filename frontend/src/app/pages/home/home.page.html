@@ -1,0 +1,58 @@
+<ion-content class="ion-padding">
+  <div class="fullheight">
+
+    <ion-text color="black" class="ion-text-center">
+      <h1>ChatOsteo</h1>
+    </ion-text>
+
+    <ion-img src="/assets/ia.jpeg" alt="The Wisconsin State Capitol building in Madison, WI at night"></ion-img>
+    <h2>ChatOsteo c'est quoi ?</h2>
+
+    <p>
+      ChatOsteo une application intelligente qui facilite la prise de rendez-vous et la préparation des séances d'ostéopathie. Grâce à l'intelligence artificielle, il collecte les renseignements administratifs et interroge les patients sur leurs symptômes pour aider l'ostéopathe à planifier efficacement la consultation.
+    </p>
+
+    <h3>Points clés de l'Assistant Virtuel pour Ostéopathes :</h3>
+    <ul>
+        <li>Gain de temps : En automatisant la collecte de données administratives et en préparant un rapport préliminaire sur les symptômes, les ostéopathes peuvent consacrer plus de temps à leurs patients pendant les consultations.</li>
+        <li>Prise de décision éclairée : Grâce aux informations détaillées fournies par l'assistant virtuel, les ostéopathes sont mieux informés avant la séance, ce qui les aide à établir un plan de traitement plus précis et personnalisé.</li>
+    </ul>
+
+  </div>
+
+
+  <ion-modal #new_chat [isOpen]="open_new_chat" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Horaire consultation</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <p>Avant de commencer la discution avec l'assistant virtuel, veuillez selection votre date et heure de consultation</p>
+
+        <ion-datetime presentation="time-date" [preferWheel]="true" [(ngModel)]="date"></ion-datetime>
+
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar color="light">
+          <ion-button expand="block" shape="round" (click)="createRoom()">Valider</ion-button>
+        </ion-toolbar>
+      </ion-footer>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+  <div class=xc>
+    <ion-button expand="block" shape="round" fill="outline" (click)="newChat()">Patient</ion-button>
+    <ion-button expand="block" shape="round" (click)="toRooms()">Ostéopathe</ion-button>
+  </div>
+</ion-toolbar>
+</ion-footer>

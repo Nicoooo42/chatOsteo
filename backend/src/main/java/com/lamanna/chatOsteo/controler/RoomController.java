@@ -1,6 +1,8 @@
 package com.lamanna.chatOsteo.controler;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,21 +17,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lamanna.chatOsteo.dto.RoomDto;
+import com.lamanna.chatOsteo.entities.Message;
 import com.lamanna.chatOsteo.entities.Room;
+import com.lamanna.chatOsteo.repositories.MessageRepository;
 import com.lamanna.chatOsteo.repositories.RoomRepository;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/room")
 public class RoomController {
 
     private RoomRepository roomRepository;
     
+    private MessageRepository messageRepository;
+    
     @Autowired
 	private ModelMapper modelMapper;
 
-    public RoomController(RoomRepository roomRepository) {
+    public RoomController(RoomRepository roomRepository, MessageRepository messageRepository) {
         this.roomRepository = roomRepository;
+        this.messageRepository = messageRepository;
     }
 
     @GetMapping()
@@ -39,8 +46,27 @@ public class RoomController {
     }
 
     @PostMapping()
-    public void addRooms(@RequestBody RoomDto room){
-    	System.out.println(room);
+    public RoomDto addRooms(@RequestBody String dateTime){
+    	System.out.println(dateTime);
+    	 //Create a DateTimeFormatter with your required format:
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+    	    //Next parse the date from the @RequestParam, specifying the TO type as a TemporalQuery:
+    	LocalDateTime date = LocalDateTime.parse(dateTime, formatter);
+    	Room room = new Room();
+    	room.setHoraire_consultation(date);
+    	
+    	room = roomRepository.save(room);
+    	
+	    Message message = new Message();
+	    message.setRoom(room);
+	    message.setContent("coucou je suis cortana, afin de preparer la seance, je vais te poser quelques questions");
+	    message.setSender(1L);
+	    
+	    messageRepository.save(message);
+	      
+	      
+    	return modelMapper.map(room, RoomDto.class);
 
     }
 }

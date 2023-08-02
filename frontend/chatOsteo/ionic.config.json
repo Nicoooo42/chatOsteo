@@ -1,7 +1,0 @@
-{
-  "name": "chatOsteo",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}

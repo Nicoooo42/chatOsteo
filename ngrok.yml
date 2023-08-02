@@ -1,0 +1,8 @@
+version: "2"
+authtoken: 1xRaPxcf9ia83eHxgKRVr03537D_6r3XCXWja17UC5Zvm4eHG
+
+tunnels:
+  test:
+    addr: localhost:8100
+    host_header: rewrite
+    proto: http
